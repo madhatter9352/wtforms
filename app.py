@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField
+from wtforms import StringField, PasswordField, IntegerField, BooleanField
 from wtforms.validators import InputRequired, Length, AnyOf
 
 app = Flask(__name__)
@@ -11,6 +11,8 @@ class LoginForm(FlaskForm):
     username = StringField('username', validators=[InputRequired(),
                                                    Length(min = 4, max = 8, message='Must be between 4 and 8 characters')])
     password = PasswordField('password', validators=[InputRequired()])
+    age = IntegerField('age')
+    true = BooleanField('true')
 
 
 @app.route('/', methods =['GET', 'POST'])
