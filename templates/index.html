@@ -40,6 +40,13 @@
             {% endfor %}
         </ul>
 
+        {{ form.email.label }}
+        {{ form.email }}
+         <ul>
+            {% for error in form.email.errors %}
+                <li style="color:red">{{ error }}</li>
+            {% endfor %}
+        </ul>
         <input type="submit" value="Submit">
     </form>
 </body>
