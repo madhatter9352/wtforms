@@ -8,7 +8,7 @@ app.config['SECRET_KEY'] = 'Mysecret!'
 
 
 class LoginForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired(),
+    username = StringField(label='username', validators=[InputRequired(),
                                                    Length(min = 4, max = 8, message='Must be between 4 and 8 characters')])
     password = PasswordField('password', validators=[InputRequired()])
     age = IntegerField('age')
@@ -16,9 +16,18 @@ class LoginForm(FlaskForm):
     email = StringField('email', validators=[Email()])
 
 
+class User:
+    def __init__(self, username, age, email):
+        self.username = username
+        self.age = age
+        self.email = email
+
+
 @app.route('/', methods =['GET', 'POST'])
 def index():
-    form = LoginForm()
+    myuser = User('lazaro', 27, 'lrcamacho@uci.com')
+
+    form = LoginForm(obj=myuser)
     if form.validate_on_submit():
         return '<h1>User: {}, Password: {}'.format(form.username.data, form.password.data)
     return render_template('index.html', form=form)
