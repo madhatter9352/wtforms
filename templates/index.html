@@ -1,3 +1,7 @@
+<!--{% from "_renderfield.html" import renderfield %}-->
+{% extends "bootstrap/base.html" %}
+{% extends "bootstrap/wtf.html" as wtf %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +12,8 @@
     <h1>Login Form</h1>
     <form action="/" method="POST">
         {{ form.csrf_token }}
-        {{ form.username.label }}
-        {{ form.username }}
-        <ul>
-        {% for error in form.username.errors %}
-            <li style="color:red;">{{ error }}</li>
-        {% endfor %}
-        </ul>
+
+        {{ renderfield(form.username) }}
 
         {{ form.password.label }}
         {{ form.password }}

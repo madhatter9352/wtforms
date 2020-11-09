@@ -2,9 +2,11 @@ from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, IntegerField, BooleanField
 from wtforms.validators import InputRequired, Length, AnyOf, Email
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'Mysecret!'
+Bootstrap = Bootstrap(app)
 
 
 class LoginForm(FlaskForm):
